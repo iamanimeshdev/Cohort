@@ -11,7 +11,7 @@ app.use("/vtop/faculty",facultyRouter);
 
 async function main()
 {
-    await mongoose.connect("mongodb+srv://iamanimeshdev:Animesh02@cluster0.tbloq.mongodb.net/");
+    await mongoose.connect("mongodb+srv://iamanimeshdev:@cluster0.tbloq.mongodb.net/");
     console.log("Db connected");
     app.listen(3000);
     console.log("app is listening on 3000")
