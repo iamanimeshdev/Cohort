@@ -44,8 +44,16 @@ UserRouter.post("/registerCourse",async (req,res)=>{
     res.json("course is registered");
 })
 
-UserRouter.get("/courses",(req,res)=>{
-    const courses=coursesModel.find({})
+UserRouter.get("/courses",async (req,res)=>{
+    const courses=await coursesModel.find({})
+    res.json(courses);
+})
+
+UserRouter.get("/registeredCourses",async (req,res)=>{
+    const {userId}=req.body;
+   const courses=await regCoursesModel.find({
+        userId:userId
+    })
     res.json(courses);
 })
 
@@ -56,16 +64,13 @@ UserRouter.get("/attendence",async (req,res)=>{
         courseId:courseId
     })
 
-    const noOfAttendedClasses=course.noOfAttendedClasses;
-    const noOfClasses=course.noOfClasses;
+    // const noOfAttendedClasses=course.attendence.noOfAttendedClasses;
+    // const noOfClasses=course.attendence.noOfClasses;
 
-    res.json({
-        noOfAttendedClasses,
-        noOfClasses
-    })
+    res.json(course.attendence)
 })
 
-module.exports({
+module.exports={
     UserRouter:UserRouter
-})
+}
 
